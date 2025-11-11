@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <mask id="crescent">
+      <!-- Show the outer circle -->
+      <rect width="128" height="128" fill="black"/>
+      <circle cx="84" cy="64" r="42" fill="white"/>
+      <!-- Cut inner circle to form crescent opening to the left -->
+      <circle cx="70" cy="64" r="32" fill="black"/>
+    </mask>
+  </defs>
+
+  <!-- Moon -->
+  <g mask="url(#crescent)" fill="#b07cff" stroke="#3d2370" stroke-width="4" stroke-linejoin="round">
+    <circle cx="84" cy="64" r="42"/>
+  </g>
+
+  <!-- Small stars (mirrored layout) -->
+  <g fill="#b07cff" stroke="#3d2370" stroke-width="4" stroke-linejoin="round">
+    <!-- top star -->
+    <path d="M56 40 L60 48 L56 56 L52 48 Z"/>
+    <!-- mid-right tiny star -->
+    <path d="M44 62 L47 67 L44 72 L41 67 Z"/>
+    <!-- bottom star -->
+    <path d="M60 84 L64 92 L60 100 L56 92 Z"/>
+  </g>
+</svg>

@@ -1,0 +1,69 @@
+:root{
+  /* Paleta calma noturna */
+  --bg-0:#0f1423;        /* azul noite */
+  --bg-1:#10182f;
+  --card:#151d33;
+  --ink:#e6e9f2;         /* texto claro */
+  --muted:#a8b2d1;
+
+  --pri:#6272c3;         /* índigo suave */
+  --pri-2:#8592e0;
+  --acc:#b7a8e3;         /* lavanda */
+  --ok:#5fc9a6;
+  --warn:#f2c14e;
+  --bad:#ef6b73;
+
+  --radius:16px;
+  --gap:16px;
+
+  --track:#233056;
+  --thumb:#7fa2ff;
+
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --background: radial-gradient(1200px 800px at 70% -10%, #1b2450 0%, var(--bg-0) 55%) fixed;
+}
+
+/* Tema Claro */
+.light-theme {
+  --bg-0:#f7f9fc;        /* fundo claro principal */
+  --bg-1:#ffffff;        /* superfície */
+  --card:#ffffff;        /* cards brancos */
+  --ink:#1f2937;         /* texto primário escuro */
+  --muted:#5b6b80;       /* texto secundário */
+
+  --pri:#4a5ba7;         /* índigo suave para destaques */
+  --pri-2:#6b7cc9;
+  --acc:#9b88dd;         /* lavanda elegante */
+  --ok:#2e7d32;          /* verde mais discreto */
+  --warn:#e68900;        /* amarelo/laranja sutil */
+  --bad:#d32f2f;         /* vermelho contrastante */
+
+  --track:#e6eaf3;       /* trilha de progresso/superfícies claras */
+  --thumb:#5e7ce2;       /* indicador */
+
+  --shadow: 0 6px 22px rgba(0,0,0,.12);
+  --background: radial-gradient(1200px 800px at 70% -10%, #f2f5ff 0%, var(--bg-0) 60%) fixed;
+}
+
+/* Tema Escuro */
+.dark-theme {
+  --bg-0:#0f1423;        /* azul noite */
+  --bg-1:#10182f;
+  --card:#151d33;
+  --ink:#e6e9f2;         /* texto claro */
+  --muted:#a8b2d1;
+
+  --pri:#6272c3;         /* índigo suave */
+  --pri-2:#8592e0;
+  --acc:#b7a8e3;         /* lavanda */
+  --ok:#5fc9a6;
+  --warn:#f2c14e;
+  --bad:#ef6b73;
+
+  --track:#233056;
+  --thumb:#7fa2ff;
+
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --background: radial-gradient(1200px 800px at 70% -10%, #1b2450 0%, var(--bg-0) 55%) fixed;
+}
+
