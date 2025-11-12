@@ -1,6 +1,8 @@
 USE sweetdreams;
 
--- Dimensões das áreas exibidas na Home
+-- =========================================================
+-- Dimensões das áreas exibidas na Home (dados originais)
+-- =========================================================
 INSERT INTO dim_area (id, slug, name) VALUES
   (1,'rotina','Rotina de horário'),
   (2,'higiene_digital','Higiene digital'),
@@ -12,7 +14,9 @@ INSERT INTO dim_area (id, slug, name) VALUES
   (8,'cochilos','Cochilos'),
   (9,'rotina_pre_sono','Rotina pré-sono');
 
--- Usuário Seidel
+-- =========================================================
+-- Usuário Seidel (dados originais)
+-- =========================================================
 INSERT INTO users (email, display_name, tz)
 VALUES ('seidel@example.com','Seidel','America/Sao_Paulo');
 SET @user_id := LAST_INSERT_ID();
@@ -36,3 +40,19 @@ VALUES
   (@user_id, NULL, 7, 14.00, JSON_OBJECT('desc','álcool reduzido'), CURDATE()),
   (@user_id, NULL, 8, 10.00, JSON_OBJECT('desc','cochilos regulados'), CURDATE()),
   (@user_id, NULL, 9,  8.00, JSON_OBJECT('desc','ritual pré-sono'), CURDATE());
+
+-- =========================================================
+-- Usuário MySQL administrador 'seidel' para conexão do backend
+-- (compatível com `server/.env.example` e `db/config.js`)
+-- =========================================================
+-- Obs.: estes comandos são DDL, não são UPDATEs, e podem
+-- falhar se o usuário já existir. Em MySQL 8, pode-se usar
+-- CREATE USER IF NOT EXISTS para evitar erro de duplicidade.
+CREATE USER IF NOT EXISTS 'seidel'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON sweetdreams.* TO 'seidel'@'localhost' WITH GRANT OPTION;
+
+-- Opcional: permitir conexão de qualquer host (rede)
+CREATE USER IF NOT EXISTS 'seidel'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON sweetdreams.* TO 'seidel'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;

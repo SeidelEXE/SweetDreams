@@ -1,0 +1,14 @@
+{
+  "name": "sweetdreams-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Backend utilities for SweetDreams: MySQL connection and model classes",
+  "scripts": {
+    "test:connect": "node test/connect.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.11.3"
+  }
+}
