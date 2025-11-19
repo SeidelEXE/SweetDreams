@@ -8,7 +8,7 @@ function greet(){
   return 'Boa noite'
 }
 
-export function Header(){
+export function Header({ onMenuToggle = () => {}, menuOpen = true }){
   return (
     <header className="header">
       <div className="brand">
@@ -18,9 +18,20 @@ export function Header(){
           <small style={{color:'var(--muted)'}}>{greet()} Seidel</small>
         </div>
       </div>
-      <div style={{display:'flex', alignItems:'center', gap:8}}>
-        <div style={{opacity:.8,fontSize:12}}>MVP • v0.1</div>
-        <ThemeToggle />
+      <div className="header-actions">
+        <button
+          className={`menu-toggle ${menuOpen ? 'active' : ''}`}
+          onClick={onMenuToggle}
+          aria-label="Alternar menu de navegação"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <div style={{display:'flex', alignItems:'center', gap:8}}>
+          <div style={{opacity:.8,fontSize:12}}>MVP • v0.1</div>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )

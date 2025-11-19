@@ -1,32 +1,68 @@
+// src/App.jsx
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ThemeProvider } from './contexts/ThemeContext.jsx'
 
-import { Routes, Route } from 'react-router-dom'
-import { Header } from './components/Header.jsx'
-import { NavBar } from './components/NavBar.jsx'
+import { AppRoutes } from './routes/AppRoutes.jsx'
+import { Login } from './routes/Login.jsx'
 import { Home } from './routes/Home.jsx'
 import { Account } from './routes/Account.jsx'
 import { Progress } from './routes/Progress.jsx'
-import { Plan } from './routes/Plan.jsx'
-import { ThemeProvider } from './contexts/ThemeContext.jsx'
-import './App.css'
+import { AreaDetail } from './routes/AreaDetail.jsx'
 
-function App() {
+function isAuthenticated(){
+  return !!localStorage.getItem('sd_token')
+}
+
+function App(){
+  const [auth, setAuth] = useState(isAuthenticated())
+
+  useEffect(() => {
+    const handleStorage = (event) => {
+      if(event.key === 'sd_token'){
+        setAuth(!!event.newValue)
+      }
+    }
+    window.addEventListener('storage', handleStorage)
+    return () => window.removeEventListener('storage', handleStorage)
+  }, [])
+
+  function handleAuthSuccess(){
+    setAuth(true)
+  }
 
   return (
     <ThemeProvider>
-    <div className="app">
-      <div className="container">
-        <div className="grid" style={{gap:'16px'}}>
-          <Header />
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/conta" element={<Account/>} />
-            <Route path="/progresso" element={<Progress/>} />
-            <Route path="/plano" element={<Plan/>} />
-          </Routes>
-        </div>
-      </div>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          {/* Tela de login ocupa a tela inteira, sem header/nav */}
+          <Route
+            path="/"
+            element={
+              auth
+                ? <Navigate to="/home" replace />
+                : <Login onAuth={handleAuthSuccess} />
+            }
+          />
+
+          {/* Área autenticada com layout AppRoutes */}
+          <Route
+            element={
+              auth
+                ? <AppRoutes />
+                : <Navigate to="/" replace />
+            }
+          >
+            <Route path="/home" element={<Home />} />
+            <Route path="/conta" element={<Account />} />
+            <Route path="/progresso" element={<Progress />} />
+            <Route path="/progresso/:areaSlug" element={<AreaDetail />} />
+          </Route>
+
+          {/* fallback */}
+          <Route path="*" element={<Navigate to={auth ? '/home' : '/'} replace />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
